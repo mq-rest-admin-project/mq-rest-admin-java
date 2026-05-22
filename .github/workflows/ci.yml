@@ -37,7 +37,7 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
-      container-suffix: java
+      container-suffix: base
       container-tag: 'latest'
 
   integration-tests:
@@ -89,7 +89,7 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
-      container-suffix: java
+      container-suffix: base
       container-tag: 'latest'
 
   security:
@@ -98,7 +98,7 @@ jobs:
       language: java
       run-standards: ${{ inputs.run-release != 'false' }}
       run-security: ${{ inputs.run-security != 'false' }}
-      container-suffix: java
+      container-suffix: base
       container-tag: 'latest'
     permissions:
       contents: read
@@ -109,7 +109,7 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
-      container-suffix: java
+      container-suffix: base
       container-tag: 'latest'
 
   version:
@@ -117,5 +117,5 @@ jobs:
     with:
       language: java
       run-release: ${{ inputs.run-release != 'false' }}
-      container-suffix: java
+      container-suffix: base
       container-tag: 'latest'
