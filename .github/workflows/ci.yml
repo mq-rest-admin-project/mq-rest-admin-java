@@ -37,6 +37,7 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
+      container-suffix: java
 
   integration-tests:
     name: "test / integration / ${{ matrix.java-version }}"
@@ -103,6 +104,7 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
+      container-suffix: java
 
   version:
     uses: vergil-project/vergil-actions/.github/workflows/ci-version-bump.yml@v2.0
