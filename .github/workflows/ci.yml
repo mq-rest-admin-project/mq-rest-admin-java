@@ -37,6 +37,8 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
+      container-suffix: java
+      container-tag: 'latest'
 
   integration-tests:
     name: "test / integration / ${{ matrix.java-version }}"
@@ -87,6 +89,8 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
+      container-suffix: java
+      container-tag: 'latest'
 
   security:
     uses: vergil-project/vergil-actions/.github/workflows/ci-security.yml@v2.0
@@ -94,6 +98,8 @@ jobs:
       language: java
       run-standards: ${{ inputs.run-release != 'false' }}
       run-security: ${{ inputs.run-security != 'false' }}
+      container-suffix: java
+      container-tag: 'latest'
     permissions:
       contents: read
       security-events: write
@@ -103,9 +109,13 @@ jobs:
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
+      container-suffix: java
+      container-tag: 'latest'
 
   version:
     uses: vergil-project/vergil-actions/.github/workflows/ci-version-bump.yml@v2.0
     with:
       language: java
       run-release: ${{ inputs.run-release != 'false' }}
+      container-suffix: java
+      container-tag: 'latest'
