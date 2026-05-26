@@ -104,8 +104,8 @@ Java wrapper for the IBM MQ administrative REST API, ported from `pymqrest` (Pyt
 
 - **Java**: 17+ (install via `brew install openjdk@17` or SDKMAN)
 - **Maven**: Provided by Maven Wrapper (`./mvnw`), no separate install needed
-- **Git hooks**: `git config core.hooksPath ../vergil-tooling/scripts/lib/git-hooks`
-- **VERGIL CLI tools (`vrg-commit`, `vrg-validate`, etc.) are pre-installed in the dev container images
+- **Hook guard**: The Claude Code PreToolUse hook guard (`.claude/hooks/guard.sh`) blocks raw `git`/`gh` — use `vrg-git`/`vrg-gh`
+- **VERGIL CLI tools** (`vrg-commit`, `vrg-validate`, etc.) are pre-installed in the dev container images
 
 ### CI
 
