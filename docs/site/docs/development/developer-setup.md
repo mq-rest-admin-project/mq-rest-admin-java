@@ -52,8 +52,8 @@ cd mq-rest-admin-java
 # Compile and run all quality checks
 ./mvnw verify
 
-# Enable repository git hooks
-git config core.hooksPath scripts/git-hooks
+# The Claude Code hook guard (.claude/hooks/guard.sh) blocks raw
+# git/gh commands — use vrg-git / vrg-gh wrappers.
 ```
 
 ## Building
@@ -122,18 +122,11 @@ scripts/dev/mq_stop.sh
 See [local MQ container](local-mq-container.md) for full container configuration,
 credentials, gateway routing, and troubleshooting.
 
-## Git hooks
+## Claude Code hook guard
 
-Enable repository git hooks before committing:
-
-```bash
-git config core.hooksPath scripts/git-hooks
-```
-
-The hooks enforce:
-
-- **pre-commit**: Branch naming conventions and protected branch rules
-- **commit-msg**: Conventional Commits format and co-author trailer validation
+The `.claude/hooks/guard.sh` PreToolUse hook blocks raw `git` and
+`gh` commands in AI agent sessions — all operations must go through
+the `vrg-git` / `vrg-gh` wrappers.
 
 ## Documentation
 
