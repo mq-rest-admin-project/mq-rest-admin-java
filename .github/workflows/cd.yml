@@ -30,6 +30,4 @@ jobs:
       language: java
       container-tag: "17"
       registry-publish: true
-    secrets:
-      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
-      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+    secrets: inherit
