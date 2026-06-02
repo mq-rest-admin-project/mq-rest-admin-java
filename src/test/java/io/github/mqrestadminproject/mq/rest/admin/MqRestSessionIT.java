@@ -673,7 +673,8 @@ class MqRestSessionIT {
   // -------------------------------------------------------------------------
 
   private static void runScript(Path script) throws IOException, InterruptedException {
-    ProcessBuilder pb = new ProcessBuilder("bash", script.toString());
+    // Absolute path avoids PATH-hijack (CodeQL java/relative-path-command).
+    ProcessBuilder pb = new ProcessBuilder("/bin/bash", script.toString());
     pb.inheritIO();
     pb.directory(REPO_ROOT.toFile());
     int exitCode = pb.start().waitFor();
