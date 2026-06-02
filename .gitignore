@@ -89,3 +89,6 @@ __pycache__/
 .mq-rest-admin-common
 docs/site/site/
 .worktrees/
+
+# Vergil tooling scratch (PR/session working dir)
+.vergil/
