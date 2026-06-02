@@ -753,7 +753,7 @@
   <span class="md-ellipsis">
     
   
-    v1.2.1
+    1.2.0
   
 
     
@@ -781,7 +781,7 @@
   <span class="md-ellipsis">
     
   
-    v1.2.0
+    1.2.0
   
 
     
@@ -809,7 +809,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.7
+    1.1.7
   
 
     
@@ -837,7 +837,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.6
+    1.1.6
   
 
     
@@ -865,7 +865,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.4
+    1.1.4
   
 
     
@@ -893,7 +893,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.3
+    1.1.3
   
 
     
@@ -921,7 +921,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.2
+    1.1.2
   
 
     
@@ -949,7 +949,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.1
+    1.1.1
   
 
     
@@ -977,7 +977,7 @@
   <span class="md-ellipsis">
     
   
-    v1.1.0
+    1.1.0
   
 
     
@@ -3055,10 +3055,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-hooks" class="md-nav__link">
+  <a href="#claude-code-hook-guard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Git hooks
+        Claude Code hook guard
       
     </span>
   </a>
@@ -3347,10 +3347,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-hooks" class="md-nav__link">
+  <a href="#claude-code-hook-guard" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Git hooks
+        Claude Code hook guard
       
     </span>
   </a>
@@ -3501,8 +3501,8 @@ locally.</p>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Compile and run all quality checks</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>./mvnw<span class="w"> </span>verify
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Enable repository git hooks</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>git<span class="w"> </span>config<span class="w"> </span>core.hooksPath<span class="w"> </span>scripts/git-hooks
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># The Claude Code hook guard (.claude/hooks/guard.sh) blocks raw</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># git/gh commands — use vrg-git / vrg-gh wrappers.</span>
 </code></pre></div>
 <h2 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./mvnw<span class="w"> </span>compile<span class="w">          </span><span class="c1"># Compile sources</span>
@@ -3552,31 +3552,26 @@ seed test objects, then run the tests:</p>
 </code></pre></div>
 <p>See <a href="../local-mq-container/">local MQ container</a> for full container configuration,
 credentials, gateway routing, and troubleshooting.</p>
-<h2 id="git-hooks">Git hooks<a class="headerlink" href="#git-hooks" title="Permanent link">&para;</a></h2>
-<p>Enable repository git hooks before committing:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>config<span class="w"> </span>core.hooksPath<span class="w"> </span>scripts/git-hooks
-</code></pre></div>
-<p>The hooks enforce:</p>
-<ul>
-<li><strong>pre-commit</strong>: Branch naming conventions and protected branch rules</li>
-<li><strong>commit-msg</strong>: Conventional Commits format and co-author trailer validation</li>
-</ul>
+<h2 id="claude-code-hook-guard">Claude Code hook guard<a class="headerlink" href="#claude-code-hook-guard" title="Permanent link">&para;</a></h2>
+<p>The <code>.claude/hooks/guard.sh</code> PreToolUse hook blocks raw <code>git</code> and
+<code>gh</code> commands in AI agent sessions — all operations must go through
+the <code>vrg-git</code> / <code>vrg-gh</code> wrappers.</p>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <h3 id="local-setup">Local setup<a class="headerlink" href="#local-setup" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Set up shared fragments symlink</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>scripts/dev/docs-setup.sh
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Install MkDocs</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Generate mapping docs</span>
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>python<span class="w"> </span>scripts/dev/generate_mapping_docs.py
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># Build the documentation site</span>
-<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>mkdocs<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>docs/site/mkdocs.yml
-<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
-<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># Serve locally with live reload</span>
-<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>docs/site/mkdocs.yml
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Set up shared fragments symlink</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>scripts/dev/docs-setup.sh
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Install MkDocs</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>pip<span class="w"> </span>install<span class="w"> </span>mkdocs-material
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Generate mapping docs</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>python<span class="w"> </span>scripts/dev/generate_mapping_docs.py
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Build the documentation site</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>mkdocs<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>docs/site/mkdocs.yml
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Serve locally with live reload</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>mkdocs<span class="w"> </span>serve<span class="w"> </span>-f<span class="w"> </span>docs/site/mkdocs.yml
 </code></pre></div>
 <h2 id="ci-pipeline-overview">CI pipeline overview<a class="headerlink" href="#ci-pipeline-overview" title="Permanent link">&para;</a></h2>
 <p>CI runs on every pull request and enforces the same gates as local
