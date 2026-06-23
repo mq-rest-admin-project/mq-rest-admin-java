@@ -26,6 +26,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -33,7 +34,7 @@ concurrency:
 
 jobs:
   audit:
-    uses: vergil-project/vergil-actions/.github/workflows/ci-audit.yml@v2.0
+    uses: vergil-project/vergil-actions/.github/workflows/ci-audit.yml@v2.1
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
@@ -84,13 +85,13 @@ jobs:
         run: ./mvnw verify -B
 
   quality:
-    uses: vergil-project/vergil-actions/.github/workflows/ci-quality.yml@v2.0
+    uses: vergil-project/vergil-actions/.github/workflows/ci-quality.yml@v2.1
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
 
   security:
-    uses: vergil-project/vergil-actions/.github/workflows/ci-security.yml@v2.0
+    uses: vergil-project/vergil-actions/.github/workflows/ci-security.yml@v2.1
     with:
       language: java
       run-standards: ${{ inputs.run-release != 'false' }}
@@ -98,16 +99,17 @@ jobs:
     permissions:
       contents: read
       security-events: write
+      actions: read
 
   test:
-    uses: vergil-project/vergil-actions/.github/workflows/ci-test.yml@v2.0
+    uses: vergil-project/vergil-actions/.github/workflows/ci-test.yml@v2.1
     with:
       language: java
       versions: ${{ inputs.java-versions || '["17", "21"]' }}
       container-suffix: java
 
   version:
-    uses: vergil-project/vergil-actions/.github/workflows/ci-version-bump.yml@v2.0
+    uses: vergil-project/vergil-actions/.github/workflows/ci-version-bump.yml@v2.1
     with:
       language: java
       run-release: ${{ inputs.run-release != 'false' }}
