@@ -21,4 +21,4 @@ Pre-alpha. Under active development.
 
 ## License
 
-[GPLv3](LICENSE)
+[MIT](LICENSE)
