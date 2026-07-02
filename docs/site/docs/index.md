@@ -34,6 +34,6 @@ tables, and return shapes are under active development.
 
 ## License
 
-GNU General Public License v3.0
+MIT License
 
 --8<-- "other-languages.md"
