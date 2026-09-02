@@ -37,7 +37,6 @@ jobs:
     uses: vergil-project/vergil-actions/.github/workflows/ci-audit.yml@v2.1
     with:
       language: java
-      versions: ${{ inputs.java-versions || '["17", "21"]' }}
       container-suffix: java
 
   integration-tests:
@@ -88,7 +87,6 @@ jobs:
     uses: vergil-project/vergil-actions/.github/workflows/ci-quality.yml@v2.1
     with:
       language: java
-      versions: ${{ inputs.java-versions || '["17", "21"]' }}
 
   security:
     uses: vergil-project/vergil-actions/.github/workflows/ci-security.yml@v2.1
@@ -105,7 +103,6 @@ jobs:
     uses: vergil-project/vergil-actions/.github/workflows/ci-test.yml@v2.1
     with:
       language: java
-      versions: ${{ inputs.java-versions || '["17", "21"]' }}
       container-suffix: java
 
   version:
